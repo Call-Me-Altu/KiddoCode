@@ -15,10 +15,12 @@ app.use(helmet());
 
 app.use(cors({
     origin: [
-        "http://127.0.0.1:5500",
         "http://localhost:5500",
-        "https://kiddocode.netlify.app"
-    ]
+        "http://127.0.0.1:5500",
+        "https://kiddcode.netlify.app"
+    ],
+    methods: ["GET", "POST"],
+    allowedHeaders: ["Content-Type"]
 }));
 
 app.use(express.json());
