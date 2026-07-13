@@ -157,7 +157,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         try {
             // Send data to backend
-const response = await fetch("https://kiddocode.onrender.com/send-demo", {
+const response = await fetch("https://kiddocode.onrender.com/send-demo", {fetch("https://kiddocode.onrender.com/send-demo", {
     method: "POST",
     headers: {
         "Content-Type": "application/json"
