@@ -2,7 +2,22 @@
 document.addEventListener("DOMContentLoaded", function () {
     const form = document.getElementById("demoBookingForm");
     const successMessage = document.getElementById("formSuccessMessage");
+    // Hamburger Menu
+    const hamburger = document.getElementById("hamburger");
+    const navLinks = document.getElementById("navLinks");
 
+    if (hamburger && navLinks) {
+    hamburger.addEventListener("click", () => {
+        navLinks.classList.toggle("active");
+    });
+
+    // Close menu when a link is clicked
+    document.querySelectorAll(".nav-links a").forEach(link => {
+        link.addEventListener("click", () => {
+            navLinks.classList.remove("active");
+        });
+    });
+}
     if (!form) {
         console.error("Form not found!");
         return;
