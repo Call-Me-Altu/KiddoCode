@@ -1,4 +1,5 @@
 Backend/node_modules/
-Backend/.env
-.DS_Store
-.vscode/
+.env
+.env.*
+!.env.example
+test-results/
