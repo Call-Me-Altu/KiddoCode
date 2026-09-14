@@ -1,217 +1,135 @@
-// Wait until DOM loads
-document.addEventListener("DOMContentLoaded", function () {
-    const form = document.getElementById("demoBookingForm");
-    const successMessage = document.getElementById("formSuccessMessage");
-    // Hamburger Menu
-    const hamburger = document.getElementById("hamburger");
-    const navLinks = document.getElementById("navLinks");
-
-    if (hamburger && navLinks) {
-    hamburger.addEventListener("click", () => {
-        navLinks.classList.toggle("active");
-    });
-
-    // Close menu when a link is clicked
-    document.querySelectorAll(".nav-links a").forEach(link => {
-        link.addEventListener("click", () => {
-            navLinks.classList.remove("active");
-        });
-    });
+"use strict";
+const menuButton = document.querySelector(".menu-button"),
+  menu = document.getElementById("nav-links");
+menuButton.hidden = false;
+function closeMenu() {
+  menu.classList.remove("open");
+  menuButton.setAttribute("aria-expanded", "false");
 }
-    if (!form) {
-        console.error("Form not found!");
-        return;
-    }
-
-    // Real-time validation
-    const nameInput = document.getElementById("name");
-    const emailInput = document.getElementById("email");
-    const phoneInput = document.getElementById("phone");
-    const courseSelect = document.getElementById("courseSelect");
-    const dateInput = document.getElementById("demoDate");
-    const timeInput = document.getElementById("demoTime");
-    const timezoneSelect = document.getElementById("timeZone");
-
-    // Set minimum date to today
-    const today = new Date().toISOString().split('T')[0];
-    if (dateInput) {
-        dateInput.setAttribute('min', today);
-    }
-
-    // Real-time validation functions
-    function validateName() {
-        const name = nameInput.value.trim();
-        const errorSpan = document.getElementById("nameError");
-        if (name.length < 2) {
-            errorSpan.textContent = "Name must be at least 2 characters";
-            return false;
-        }
-        errorSpan.textContent = "";
-        return true;
-    }
-
-    function validateEmail() {
-        const email = emailInput.value.trim();
-        const errorSpan = document.getElementById("emailError");
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(email)) {
-            errorSpan.textContent = "Please enter a valid email address";
-            return false;
-        }
-        errorSpan.textContent = "";
-        return true;
-    }
-
-    function validatePhone() {
-        const phone = phoneInput.value.trim();
-        const errorSpan = document.getElementById("phoneError");
-        const phoneRegex = /^[0-9]{10,15}$/;
-        if (!phoneRegex.test(phone)) {
-            errorSpan.textContent = "Please enter a valid phone number (10-15 digits)";
-            return false;
-        }
-        errorSpan.textContent = "";
-        return true;
-    }
-
-    function validateCourse() {
-        const course = courseSelect.value;
-        const errorSpan = document.getElementById("courseError");
-        if (!course) {
-            errorSpan.textContent = "Please select a course";
-            return false;
-        }
-        errorSpan.textContent = "";
-        return true;
-    }
-
-    function validateTimezone() {
-        const timezone = timezoneSelect.value;
-        const errorSpan = document.getElementById("timeZoneError");
-        if (!timezone) {
-            errorSpan.textContent = "Please select a timezone";
-            return false;
-        }
-        errorSpan.textContent = "";
-        return true;
-    }
-
-    function validateDate() {
-        const date = dateInput.value;
-        const errorSpan = document.getElementById("dateError");
-        if (!date) {
-            errorSpan.textContent = "Please select a date";
-            return false;
-        }
-        const selectedDate = new Date(date);
-        const today = new Date();
-        today.setHours(0, 0, 0, 0);
-        if (selectedDate < today) {
-            errorSpan.textContent = "Please select today or a future date";
-            return false;
-        }
-        errorSpan.textContent = "";
-        return true;
-    }
-
-    function validateTime() {
-        const time = timeInput.value;
-        const errorSpan = document.getElementById("timeError");
-        if (!time) {
-            errorSpan.textContent = "Please select a time";
-            return false;
-        }
-        errorSpan.textContent = "";
-        return true;
-    }
-
-    // Add event listeners for real-time validation
-    nameInput.addEventListener("input", validateName);
-    emailInput.addEventListener("input", validateEmail);
-    phoneInput.addEventListener("input", validatePhone);
-    courseSelect.addEventListener("change", validateCourse);
-    timezoneSelect.addEventListener("change", validateTimezone);
-    dateInput.addEventListener("change", validateDate);
-    timeInput.addEventListener("change", validateTime);
-
-    // Form submission
-    form.addEventListener("submit", async function (e) {
-        e.preventDefault();
-
-        // Run all validations
-        const isNameValid = validateName();
-        const isEmailValid = validateEmail();
-        const isPhoneValid = validatePhone();
-        const isCourseValid = validateCourse();
-        const isTimezoneValid = validateTimezone();
-        const isDateValid = validateDate();
-        const isTimeValid = validateTime();
-
-        if (!isNameValid || !isEmailValid || !isPhoneValid || !isCourseValid || 
-            !isTimezoneValid || !isDateValid || !isTimeValid) {
-            alert("Please fix all errors before submitting ❌");
-            return;
-        }
-
-        // Get form values
-        const formData = {
-            name: nameInput.value.trim(),
-            email: emailInput.value.trim(),
-            phone: phoneInput.value.trim(),
-            course: courseSelect.value,
-            timezone: timezoneSelect.value,
-            date: dateInput.value,
-            time: timeInput.value
-        };
-
-        // Show loading state
-        const submitButton = form.querySelector('button[type="submit"]');
-        const originalButtonText = submitButton.textContent;
-        submitButton.textContent = "Scheduling... ⏳";
-        submitButton.disabled = true;
-
-        try {
-            // Send data to backend
-const response = await fetch("https://kiddocode.onrender.com/send-demo", {
+menuButton.addEventListener("click", () => {
+  const open = menu.classList.toggle("open");
+  menuButton.setAttribute("aria-expanded", String(open));
+});
+menu.addEventListener("click", (e) => {
+  if (e.target.closest("a")) closeMenu();
+});
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape" && menu.classList.contains("open")) {
+    closeMenu();
+    menuButton.focus();
+  }
+});
+document.addEventListener("click", (e) => {
+  if (!e.target.closest("nav")) closeMenu();
+});
+const form = document.getElementById("demoBookingForm");
+if (form) {
+  const date = form.elements.date;
+  date.min = new Date(Date.now() - 86400000).toISOString().slice(0, 10);
+  date.max = new Date(Date.now() + 180 * 86400000).toISOString().slice(0, 10);
+  const localZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+  if (
+    !Array.from(form.elements.timezone.options).some(
+      (o) => o.value === localZone,
+    )
+  ) {
+    const o = new Option(localZone, localZone);
+    form.elements.timezone.add(o);
+  }
+  form.elements.timezone.value = localZone;
+  document.querySelectorAll("[data-course]").forEach((a) =>
+    a.addEventListener("click", () => {
+      form.elements.course.value = a.dataset.course;
+    }),
+  );
+  let pending = false;
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    if (pending || !form.reportValidity()) return;
+    pending = true;
+    const payload = Object.fromEntries(new FormData(form));
+    payload.consent = form.elements.consent.checked;
+    const body = JSON.stringify(payload);
+    const button = form.querySelector("button[type=submit]"),
+      message = form.querySelector(".form-message");
+    const original = button.innerHTML;
+    button.disabled = true;
+    button.textContent = "Saving your request…";
+    form.setAttribute("aria-busy", "true");
+    message.classList.remove("error");
+    message.textContent = "";
+    const slow = setTimeout(() => {
+      message.textContent =
+        "Still connecting. Your server may be waking up; please keep this page open.";
+    }, 6000);
+    try {
+      // Lock submission before hashing: two rapid clicks must not race.
+      // Store a hash and retry ID, never the parent's form details.
+      const digest = Array.from(
+        new Uint8Array(
+          await crypto.subtle.digest("SHA-256", new TextEncoder().encode(body)),
+        ),
+      )
+        .map((v) => v.toString(16).padStart(2, "0"))
+        .join("");
+      let saved;
+      try {
+        saved = JSON.parse(sessionStorage.getItem("kiddo-request") || "null");
+      } catch {}
+      const key = saved?.digest === digest ? saved.key : crypto.randomUUID();
+      try {
+        sessionStorage.setItem(
+          "kiddo-request",
+          JSON.stringify({ digest, key }),
+        );
+      } catch {}
+const response = await fetch(
+  "https://kiddocode.onrender.com/api/bookings",
+  {
     method: "POST",
     headers: {
-        "Content-Type": "application/json"
+      "Content-Type": "application/json",
+      "Idempotency-Key": key
     },
-    body: JSON.stringify(formData)
-});
-            const data = await response.json();
+    body,
+    signal: AbortSignal.timeout(75000)
+  }
+);
 
-            if (!response.ok) {
-                throw new Error(data.message || "Something went wrong");
-            }
+const text = await response.text();
+const result = text ? JSON.parse(text) : {};
 
-            if (data.message) {
-                // Show success message
-                successMessage.classList.remove("hidden");
-                
-                // Reset form
-                form.reset();
-                
-                // Clear error messages
-                document.querySelectorAll('.error-msg').forEach(msg => msg.textContent = "");
-                
-                // Scroll to success message
-                successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                
-                // Hide success after 5 seconds
-                setTimeout(() => {
-                    successMessage.classList.add("hidden");
-                }, 5000);
-            } else {
-                alert("Something went wrong ❌");
-            }
-        } catch (error) {
-            console.error("Fetch error:", error);
-            alert(error.message || "Failed to book demo. Please try again later. ❌");
-        } finally {
-            // Reset button
-            submitButton.textContent = originalButtonText;
-            submitButton.disabled = false;
-        }
-    });
-});
+if (!response.ok) {
+  throw new Error(result.message || "Booking request failed.");
+}
+      if (!response.ok || !result.success || !result.id)
+        throw Error(result.message || "Unable to confirm your request.");
+      form.hidden = true;
+      const success = document.getElementById("booking-success");
+      success.hidden = false;
+      document.getElementById("booking-reference").textContent =
+        "Reference: " + result.id;
+      document.getElementById("booking-whatsapp").href =
+        "https://wa.me/918077481604?text=" +
+        encodeURIComponent(
+          "Hi KiddoCode! I submitted a demo request. Reference: " + result.id,
+        );
+      success.focus();
+      form.reset();
+    } catch (e) {
+      message.classList.add("error");
+      message.textContent =
+        e.name === "TimeoutError"
+          ? "This is taking longer than expected. Your request may already be saved. Retry with the same details to avoid a duplicate."
+          : e.message === "Failed to fetch"
+            ? "Connection failed. Your details are still here. Please retry."
+            : e.message;
+    } finally {
+      clearTimeout(slow);
+      pending = false;
+      button.disabled = false;
+      button.innerHTML = original;
+      form.removeAttribute("aria-busy");
+    }
+  });
+}
