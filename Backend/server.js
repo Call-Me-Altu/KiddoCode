@@ -1,188 +1,196 @@
 require("dotenv").config();
-
 const express = require("express");
 const cors = require("cors");
 const helmet = require("helmet");
-const rateLimit = require("express-rate-limit");
-const { Resend } = require("resend");
+const { rateLimit } = require("express-rate-limit");
+const { createHash } = require("node:crypto");
+const { validateBooking } = require("./validation");
+const { database, verifyUser } = require("./services");
 
-const app = express();
-
-const resend = new Resend(process.env.RESEND_API_KEY);
-
-// Middleware
-app.use(helmet());
-
-app.use(cors({
-    origin: [
-        "http://localhost:5500",
-        "http://127.0.0.1:5500",
-        "https://kiddcode.netlify.app"
-    ],
-    methods: ["GET", "POST"],
-    allowedHeaders: ["Content-Type"]
-}));
-
-app.use(express.json());
-
-// Rate Limiter
-const limiter = rateLimit({
-    windowMs: 15 * 60 * 1000, // 15 minutes
-    max: 20,
-    message: {
-        success: false,
-        message: "Too many requests. Please try again later."
-    }
-});
-
-app.use(limiter);
-
-// Test Route
-app.get("/", (req, res) => {
+function createApp({ db = database, authenticate = verifyUser } = {}) {
+  const app = express();
+  if (process.env.TRUST_PROXY_HOPS)
+    app.set("trust proxy", Number(process.env.TRUST_PROXY_HOPS));
+  app.use(
+    helmet({
+      contentSecurityPolicy: {
+        directives: {
+          "connect-src": ["'self'", "https://*.supabase.co"],
+          "script-src": ["'self'"],
+          "upgrade-insecure-requests": null,
+        },
+      },
+    }),
+  );
+  const origins = (
+    process.env.ALLOWED_ORIGINS ||
+    "http://localhost:3001,https://kiddcode.netlify.app"
+  ).split(",");
+  app.use(
+    cors({
+      origin: origins,
+      methods: ["GET", "POST", "PATCH"],
+      allowedHeaders: ["Content-Type", "Authorization", "Idempotency-Key"],
+    }),
+  );
+  app.use(express.json({ limit: "12kb" }));
+  app.use("/api", (req, res, next) => {
+    res.set("Cache-Control", "no-store");
+    next();
+  });
+  app.get("/api/health", (req, res) => res.json({ ok: true }));
+  app.get("/api/config", (req, res) =>
     res.json({
-        success: true,
-        message: "KiddoCode Backend is running 🚀"
-    });
-});
-
-// Temporary Route
-app.post("/send-demo", async (req, res) => {
+      supabaseUrl: process.env.SUPABASE_URL || "",
+      supabaseKey: process.env.SUPABASE_ANON_KEY || "",
+    }),
+  );
+  const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000,
+    limit: 20,
+    standardHeaders: "draft-8",
+    legacyHeaders: false,
+    message: { message: "Too many requests. Please try again later." },
+  });
+  app.post(["/api/bookings", "/send-demo"], limiter, async (req, res) => {
+    const key = req.get("Idempotency-Key");
+    if (
+      !/^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$/i.test(
+        key || "",
+      )
+    )
+      return res
+        .status(400)
+        .json({ message: "A valid request ID is required." });
+    let data;
     try {
-
-        const {
-            name,
-            email,
-            phone,
-            course,
-            timezone,
-            date,
-            time
-        } = req.body;
-
-        console.log("Received Data:", req.body);
-
-        // Email to you
-        await resend.emails.send({
-            from: "KiddoCode <onboarding@resend.dev>",
-            to: process.env.OWNER_EMAIL,
-            subject: "🚀 New Demo Booking",
-            html: `
-                <h2>New Demo Booking</h2>
-
-                <p><strong>Name:</strong> ${name}</p>
-                <p><strong>Email:</strong> ${email}</p>
-                <p><strong>Phone:</strong> ${phone}</p>
-                <p><strong>Course:</strong> ${course}</p>
-                <p><strong>Timezone:</strong> ${timezone}</p>
-                <p><strong>Date:</strong> ${date}</p>
-                <p><strong>Time:</strong> ${time}</p>
-            `
-        });
-
-        // Confirmation email to user
-await resend.emails.send({
-    from: "KiddoCode <onboarding@resend.dev>",
-    to: email,
-    subject: "🎉 Your KiddoCode Demo Class is Confirmed!",
-
-    html: `
-    <div style="font-family: Arial, Helvetica, sans-serif; background:#f4f7fb; padding:40px 20px;">
-        <div style="max-width:650px; margin:auto; background:#ffffff; border-radius:12px; overflow:hidden; box-shadow:0 8px 20px rgba(0,0,0,0.08);">
-
-            <div style="background:#2563eb; color:white; padding:30px; text-align:center;">
-                <h1 style="margin:0;">🚀 KiddoCode</h1>
-                <p style="margin-top:10px; font-size:18px;">
-                    Your FREE Demo Class is Confirmed!
-                </p>
-            </div>
-
-            <div style="padding:35px; color:#333;">
-
-                <h2>Hi ${name}, 👋</h2>
-
-                <p>
-                    Thank you for booking a <strong>FREE 1:1 Demo Class</strong> with
-                    <strong>KiddoCode</strong>.
-                </p>
-
-                <p>
-                    We are excited to help you begin your programming journey!
-                </p>
-
-                <div style="background:#eef4ff; border-left:5px solid #2563eb; padding:20px; margin:30px 0; border-radius:8px;">
-
-                    <h3 style="margin-top:0;">📅 Demo Details</h3>
-
-                    <p><strong>Course:</strong> ${course}</p>
-
-                    <p><strong>Date:</strong> ${date}</p>
-
-                    <p><strong>Time:</strong> ${time}</p>
-
-                    <p><strong>Time Zone:</strong> ${timezone}</p>
-
-                </div>
-
-                <h3>📌 Before Your Session</h3>
-
-                <ul>
-                    <li>💻 Keep your laptop or desktop ready.</li>
-                    <li>🌐 Ensure you have a stable internet connection.</li>
-                    <li>📝 Keep a notebook handy for important notes.</li>
-                    <li>⏰ Please join 5–10 minutes before your scheduled time.</li>
-                </ul>
-
-                <p>
-                    Our mentor will contact you shortly with the meeting link and any additional details.
-                </p>
-
-                <p style="margin-top:30px;">
-                    We look forward to meeting you and helping you build amazing programming skills.
-                </p>
-
-                <p>
-                    Best Regards,<br>
-                    <strong>KiddoCode Team</strong>
-                </p>
-
-            </div>
-
-            <div style="background:#1e293b; color:#ffffff; text-align:center; padding:20px; font-size:14px;">
-
-                <strong>KiddoCode</strong><br>
-
-                Learn Programming • Build Projects • Shape Your Future 🚀
-
-                <br><br>
-
-                📧 altamashraeen3@gmail.com
-
-            </div>
-
-        </div>
-    </div>
-    `
-});
-
-        res.json({
-            success: true,
-            message: "Demo booked successfully."
-        });
-
-    } catch (error) {
-
-        console.error(error);
-
-        res.status(500).json({
-            success: false,
-            message: "Unable to send email."
-        });
-
+      data = validateBooking(req.body);
+    } catch (e) {
+      return res.status(400).json({ message: e.message });
     }
-});
-
-const PORT = process.env.PORT || 3001;
-
-app.listen(PORT, () => {
-    console.log(`🚀 Server running on http://localhost:${PORT}`);
-});
+    const fingerprint = createHash("sha256")
+      .update(JSON.stringify(data))
+      .digest("hex");
+    try {
+      const booking = await db("rpc/save_booking", {
+        method: "POST",
+        body: {
+          p_key: key,
+          p_fingerprint: fingerprint,
+          p_data: data,
+          p_whatsapp: process.env.WHATSAPP_ENABLED === "true",
+        },
+      });
+      res.status(201).json({
+        success: true,
+        id: booking,
+        message:
+          "Your demo request is saved. We will contact you to confirm a time.",
+      });
+    } catch (e) {
+      if (e.code === "23505")
+        return res.status(409).json({
+          message:
+            "This request ID was used with different details. Reload and try again.",
+        });
+      console.error("booking_save_failed", e.code || "unavailable");
+      res.status(503).json({
+        message:
+          "We could not confirm your booking. Your details are still here; please retry.",
+      });
+    }
+  });
+  app.use(
+    "/api/account",
+    rateLimit({
+      windowMs: 60000,
+      limit: 120,
+      standardHeaders: "draft-8",
+      legacyHeaders: false,
+      message: { message: "Please wait a moment before retrying." },
+    }),
+  );
+  app.use("/api/account", async (req, res, next) => {
+    try {
+      req.user = await authenticate(req.get("Authorization"));
+      if (!req.user.email_confirmed_at) throw Error();
+      next();
+    } catch {
+      res
+        .status(401)
+        .json({ message: "Please sign in with a verified email address." });
+    }
+  });
+  const isAdmin = (user) =>
+    (process.env.ADMIN_USER_IDS || "").split(",").includes(user.id);
+  app.get("/api/account/bookings", async (req, res) => {
+    try {
+      const admin = isAdmin(req.user);
+      const page = Math.max(
+        0,
+        Math.min(100000, parseInt(req.query.page, 10) || 0),
+      );
+      const filter = admin
+        ? ""
+        : "&email=eq." + encodeURIComponent(req.user.email.toLowerCase());
+      const rows = await db(
+        `bookings?select=id,name,email,phone,age,course,date,time,timezone,status,created_at&order=created_at.desc&limit=51&offset=${page * 50}${filter}`,
+      );
+      res.json({
+        admin,
+        email: req.user.email,
+        rows: rows.slice(0, 50),
+        hasMore: rows.length > 50,
+      });
+    } catch {
+      res
+        .status(503)
+        .json({ message: "Unable to load bookings. Please retry." });
+    }
+  });
+  app.patch("/api/account/bookings/:id", async (req, res) => {
+    if (!isAdmin(req.user))
+      return res.status(403).json({ message: "Admin access required." });
+    if (
+      !/^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$/i.test(
+        req.params.id,
+      ) ||
+      ![
+        "New",
+        "Contacted",
+        "Demo Booked",
+        "Converted",
+        "Not Interested",
+      ].includes(req.body.status)
+    )
+      return res.status(400).json({ message: "Invalid booking or status." });
+    try {
+      const rows = await db(`bookings?id=eq.${req.params.id}`, {
+        method: "PATCH",
+        body: { status: req.body.status },
+        headers: { Prefer: "return=representation" },
+      });
+      if (!rows.length)
+        return res.status(404).json({ message: "Booking not found." });
+      res.json({ success: true });
+    } catch {
+      res.status(503).json({ message: "Status was not saved. Please retry." });
+    }
+  });
+  app.use(
+    express.static(require("node:path").join(__dirname, "public"), {
+      extensions: ["html"],
+    }),
+  );
+  app.use((err, req, res, next) =>
+    res
+      .status(err.status === 413 ? 413 : 400)
+      .json({ message: "Invalid request." }),
+  );
+  return app;
+}
+if (require.main === module)
+  createApp().listen(process.env.PORT || 3001, () =>
+    console.log("KiddoCode listening"),
+  );
+module.exports = { createApp };
