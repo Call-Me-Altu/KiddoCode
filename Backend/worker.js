@@ -43,9 +43,36 @@ async function send(job, booking) {
   if (!e.RESEND_API_KEY || !e.EMAIL_FROM || !e.OWNER_EMAIL)
     throw Error("Email configuration incomplete");
   const owner = job.channel === "owner_email";
-  const text = owner
-    ? `New demo request ${booking.id}\nParent/adult: ${booking.name}\nEmail: ${booking.email}\nPhone: ${booking.phone}\nAge: ${booking.age}\nCourse: ${booking.course}\nPreferred: ${booking.date} ${booking.time} (${booking.timezone})\nReview in your KiddoCode dashboard.`
-    : `Hi ${booking.name},\n\nYour KiddoCode demo request is saved.\nReference: ${booking.id}\nCourse: ${booking.course}\nPreferred: ${booking.date} ${booking.time} (${booking.timezone})\n\nThis is a request, not a confirmed appointment. We will contact you to confirm availability and share a meeting link.\n\nKiddoCode`;
+const text = owner
+  ? `New KiddoCode demo booking
+
+Booking ID: ${booking.id}
+Parent/adult name: ${booking.name}
+Email: ${booking.email}
+Phone: ${booking.phone}
+Learner age group: ${booking.age}
+Course selected: ${booking.course}
+Preferred date: ${booking.date}
+Preferred time: ${booking.time}
+Timezone: ${booking.timezone}
+
+Open your KiddoCode dashboard to manage this lead.`
+  : `Hi ${booking.name},
+
+Your free KiddoCode demo request has been received successfully. 🎉
+
+Your booking details:
+• Course: ${booking.course}
+• Learner age group: ${booking.age}
+• Preferred date: ${booking.date}
+• Preferred time: ${booking.time}
+• Timezone: ${booking.timezone}
+• Booking reference: ${booking.id}
+
+Our team will contact you shortly to confirm the final demo time and share the meeting details.
+
+Regards,
+KiddoCode Team`;
   const response = await fetch("https://api.resend.com/emails", {
     method: "POST",
     headers: {
