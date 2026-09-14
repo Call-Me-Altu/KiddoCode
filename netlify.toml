@@ -1,7 +1,6 @@
 [build]
-  publish = "public"
+  publish = "Frontend"
 
-# Replace with your backend URL if it changes. /api keeps the browser same-origin.
 [[redirects]]
   from = "/api/*"
   to = "https://kiddocode.onrender.com/api/:splat"
@@ -16,6 +15,7 @@
     X-Frame-Options = "DENY"
     Permissions-Policy = "camera=(), microphone=(), geolocation=()"
     Content-Security-Policy = "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self' https://*.supabase.co; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; form-action 'self'"
+
 [[headers]]
   for = "/api/*"
   [headers.values]
