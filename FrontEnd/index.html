@@ -1,355 +1,655 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
- 
-    <title>KiddoCode | Learn Programming for Students</title>
- 
-    <!-- Tab Logo -->
-    <link rel="icon" href="image.png" type="image/x-icon">
- 
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-</head>
-<body>
- 
-<!-- Navigation -->
-<nav class="navbar">
-    <div class="container nav-container">
-       
-        <!-- Logo -->
-        <div class="logo">
-            <a href="#">
-                <img src="logo.jpeg" alt="KiddoCode Logo">
-            </a>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta
+      name="description"
+      content="Live, mentor-led coding classes with KiddoCode. Explore Python, web development and more. Request a free demo with no login required."
+    />
+    <meta name="theme-color" content="#3057d5" />
+    <title>Big ideas start with a little code | KiddoCode</title>
+    <link rel="icon" href="image.png" type="image/png" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+    <header>
+      <nav class="wrap nav" aria-label="Main navigation">
+        <a class="brand" href="index.html">
+          <img src="image.png" alt="KiddoCode Logo" class="brand-logo" />
+        </a>
+
+        <button
+          class="menu-button"
+          type="button"
+          aria-label="Toggle navigation"
+          aria-expanded="false"
+          aria-controls="nav-links"
+          hidden
+        >
+          ☰
+        </button>
+
+        <div id="nav-links">
+          <a href="index.html#courses">Courses</a>
+          <a href="about.html">Our story</a>
+          <a href="index.html#mentors">Mentors</a>
+          <a href="login.html">Log in</a>
+          <a href="signup.html">Sign up</a>
+          <a class="button small" href="index.html#demo">
+            Book a free demo <span aria-hidden="true">↗</span>
+          </a>
         </div>
- 
-        <ul class="nav-links" id="navLinks">
-            <li><a href="#">Home</a></li>
-            <li><a href="about.html" target="_blank" rel="noopener noreferrer">About Us</a></li>
-            <li><a href="index.html#courses">Courses</a></li>
-            <li><a href="#mentors">Mentors</a></li>
-            <li><a href="#demo" class="btn-demo-nav">Book Free Demo</a></li>
-        </ul>
- 
-        <div class="hamburger" id="hamburger">
-            <span></span><span></span><span></span>
+      </nav>
+    </header>
+    <main id="main">
+      <section class="hero wrap">
+        <div class="hero-copy">
+          <p class="eyebrow">
+            <span class="green-dot" aria-hidden="true"></span> BIG IDEAS START SMALL
+          </p>
+          <h1>
+            Less scrolling.<br />More <span class="underline">creating.</span>
+          </h1>
+          <p class="lead">
+            Turn “what if?” into “I made this!”<br />Live coding classes that
+            help curious students become confident creators.
+          </p>
+          <div class="actions">
+            <a class="button" href="#demo">Book a free demo <span>↗</span></a
+            ><a class="text-link" href="#courses">Find their first course →</a>
+          </div>
+          <!-- Keep each number paired with its label. -->
+          <dl class="hero-stats" aria-label="KiddoCode at a glance">
+            <div>
+              <dt>500+</dt>
+              <dd>students</dd>
+            </div>
+            <div>
+              <dt>98%</dt>
+              <dd>satisfaction</dd>
+            </div>
+            <div>
+              <dt>4.9</dt>
+              <dd><span aria-hidden="true">⭐</span> rating</dd>
+            </div>
+          </dl>
+          <div class="hero-notes">
+            <span>✓ Live 1:1 learning</span>
+            <span>✓ Real projects</span>
+            <span>✓ No experience needed</span>
+          </div>
         </div>
-    </div>
-</nav>
- 
-<!-- Hero Section -->
-<section class="hero">
-    <div class="container hero-grid">
-        <div class="hero-content">
-            <span class="badge">✨ Future tech creators start here</span>
-            <h1>Code your future with <span class="gradient-text">industry-ready</span> programming skills</h1>
-            <p>Live 1:1 classes, project-based learning & career mentorship for students who want to master Python, Java, C++, and Web Development.</p>
- 
-            <div class="hero-buttons">
-                <a href="#demo" class="btn-outline" style="color:#3b82f6; border:2px solid #3b82f6;">
-                    Book Free Demo →
-                </a>
-                <a href="#courses" class="btn-outline" style="color:#3b82f6; border:2px solid #3b82f6;">
-                    Explore Courses →
-                </a>
+
+        <div
+          class="creation-board"
+          aria-label="An example of learning Python to build a space adventure"
+        >
+          <div class="floating-label">A little curiosity goes a long way ✦</div>
+          <div class="editor">
+            <div class="editor-bar">
+              <span class="dots">● ● ●</span><span>my_first_adventure.py</span
+              ><span>↗</span>
             </div>
- 
-            <div class="stats">
-                <div><strong>500+</strong> students</div>
-                <div><strong>98%</strong> satisfaction</div>
-                <div><strong>4.9</strong> ⭐ rating</div>
+            <div class="code-lines">
+              <p><span>01</span> <em># Every big idea starts here</em></p>
+              <p><span>02</span> explorer = <b>"You"</b></p>
+              <p><span>03</span> dream = <b>"Something amazing"</b></p>
+              <p><span>04</span></p>
+              <p><span>05</span> <strong>def</strong> create_future():</p>
+              <p>
+                <span>06</span> &nbsp;&nbsp;<strong>return</strong> curiosity +
+                code
+              </p>
             </div>
+            <div class="editor-bottom">
+              <span class="green-dot"></span> Imagination is running…
+            </div>
+          </div>
+          <div class="project-preview">
+            <div>
+              <span class="eyebrow">PROJECT UNLOCKED</span>
+              <h3>Hello, universe.</h3>
+              <p>Your next adventure starts with code.</p>
+            </div>
+            <div class="planet" aria-hidden="true"><span>✦</span></div>
+            <span class="project-sticker"
+              >Made by<br /><b>a future you.</b></span
+            >
+          </div>
+          <span class="board-spark" aria-hidden="true">✳</span>
         </div>
- 
-        <div class="hero-image">
-            <img src="B193.jpg" alt="Students coding illustration">
+      </section>
+      <div class="learning-strip">
+        <div class="wrap">
+          <span>Not just a language.<br /><b>A new way to think.</b></span
+          ><strong>Creative confidence</strong><span class="star">✳</span
+          ><strong>Problem solving</strong><span class="star">✳</span
+          ><strong>Learning by doing</strong>
         </div>
-    </div>
-</section>
- 
-<!-- Courses Section -->
-<section id="courses" class="courses">
-    <div class="container">
-        <div class="section-header">
-            <h2>Our <span>popular courses</span></h2>
-            <p>Designed for beginners to advanced learners — hands-on, interactive & fun</p>
+      </div>
+      <section class="section wrap" id="courses">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">FIND THEIR SPARK</p>
+            <h2>One curious mind.<br />So many possibilities.</h2>
+          </div>
+          <p>
+            From their very first line to their next big project. We’ll help
+            find a starting point that fits.
+          </p>
         </div>
- 
-        <div class="courses-grid">
- 
-            <!-- Existing Course 1 -->
-            <div class="course-card">
-                <div class="course-icon">🐍</div>
-                <h3>Python Programming</h3>
-                <p>
-                    Master Python from basics to data structures, OOP, and mini projects.
-                    Perfect for AI & backend.
-                </p>
-                <div class="course-meta">⭐ 4.9 • 96 hours</div>
-                <div class="course-price">Starts @$22/class</div>
+        <div class="course-grid">
+          <article class="course-card mint">
+            <div class="card-top">
+              <span class="course-icon">🐍</span>
+              ><span class="eyebrow">01 / LEARNING PATH</span>
             </div>
- 
-            <!-- Existing Course 2 -->
-            <div class="course-card">
-                <div class="course-icon">☕</div>
-                <h3>Java Programming</h3>
-                <p>
-                    Build strong OOP foundations, multithreading, and real-world applications
-                    with Java.
-                </p>
-                <div class="course-meta">⭐ 4.8 • Up to 96 hours</div>
-                <div class="course-price">Starts @$22/class</div>
-            </div>
- 
-            <!-- Existing Course 3 -->
-            <div class="course-card">
-                <div class="course-icon">⚙️</div>
-                <h3>C++ Programming</h3>
-                <p>
-                    Deep dive into pointers, memory management, DSA,
-                    and competitive programming prep.
-                </p>
-                <div class="course-meta">⭐ 4.9 • Up to 96 hours</div>
-                <div class="course-price">Starts @$22/class</div>
-            </div>
- 
-            <!-- Existing Course 4 -->
-            <div class="course-card">
-                <div class="course-icon">🌐</div>
-                <h3>Web Development</h3>
-                <p>
-                    HTML, CSS, JavaScript, React & Node —
-                    build full-stack websites from scratch.
-                </p>
-                <div class="course-meta">⭐ 4.9 • Up to 96 hours</div>
-                <div class="course-price">Starts @$22/class</div>
-            </div>
- 
-            <!-- ✅ NEW Course 5 -->
-            <div class="course-card">
-                <div class="course-icon">🤖</div>
-                <h3>Python with Machine Learning</h3>
-                <p>
-                    Learn Python for data analysis, machine learning algorithms,
-                    model building, and real-world AI projects.
-                </p>
-                <div class="course-meta">⭐ 4.9 • Up to 96 hours</div>
-                <div class="course-price">Starts @$22/class</div>
-            </div>
- 
-            <!-- ✅ NEW Course 6 -->
-            <div class="course-card">
-                <div class="course-icon">🧩</div>
-                <h3>C# Programming (C Sharp)</h3>
-                <p>
-                    Master C# fundamentals, OOP, .NET basics, and application development
-                    for desktop and game programming.
-                </p>
-                <div class="course-meta">⭐ 4.8 • Up to 96 hours</div>
-                <div class="course-price">Starts @$22/class</div>
-            </div>
- 
-        </div>
-    </div>
-</section>
- 
-    <!-- Mentors Section -->
-    <section id="mentors" class="mentors">
-        <div class="container">
-            <div class="section-header">
-                <h2>Learn from <span>expert mentors</span></h2>
-                <p>Industry professionals who guide you every step of the way</p>
-            </div>
-            <div class="mentors-grid">
-                <div class="mentor-card">
-                    <div class="mentor-avatar">👩‍💻</div>
-                    <h4>Altamash</h4>
-                    <p>Software Engineer @ HCLTECH, 5+ years in Teaching Java, Python</p>
-                    <span class="mentor-tag">Programming Mentor</span>
-                </div>
- 
-                <div class="mentor-card">
-                    <div class="mentor-avatar">🧪</div>
-                    <h4>Siddhi Sharma</h4>
-                    <p>Science Educator with 10+ years experience teaching CBSE & USA Board curricula</p>
-                    <span class="mentor-tag">Science Mentor</span>
-                </div>
-                <div class="mentor-card">
-                    <div class="mentor-avatar">👨‍🏫</div>
-                    <h4>Asif</h4>
-                    <p>Software Engineer @ HCLTECH, 5+ years in Teaching AI/ML , C++</p>
-                    <span class="mentor-tag">Programming Mentor</span>
-                </div>
-               
-                <div class="mentor-card">
-                    <div class="mentor-avatar">📐</div>
-                    <h4>Aashish Rajput</h4>
-                    <p>Mathematics Specialist focusing on conceptual learning for CBSE & USA Boards</p>
-                    <span class="mentor-tag">Mathematics Mentor</span>
-                </div>
-            </div>
-        </div>
-    </section>
- 
-    <!-- Testimonials Section -->
-    <section id="testimonialsid" class="testimonials">
-        <div class="container">
-            <div class="section-header">
-                <h2>What our <span>students say</span></h2>
-                <p>Trusted by thousands of young coders worldwide</p>
-            </div>
-            <div class="testimonial-grid">
-                <div class="testimonial-card">
-                    <div class="quote">“</div>
-                    <p>The Python course was a game-changer! Mentors are super supportive, and I built my own AI chatbot after just 8 weeks.</p>
-                    <div class="student-info">
-                        <strong>— Aanya S.</strong> <span>Grade 10</span>
-                    </div>
-                    <div class="rating">★★★★★</div>
-                </div>
-                <div class="testimonial-card">
-                    <div class="quote">“</div>
-                    <p>I never thought coding could be this fun. The Web Dev track helped me launch my first portfolio site. Highly recommended!</p>
-                    <div class="student-info">
-                        <strong>— Kabir R.</strong> <span>College freshman</span>
-                    </div>
-                    <div class="rating">★★★★★</div>
-                </div>
-                <div class="testimonial-card">
-                    <div class="quote">“</div>
-                    <p>C++ and DSA sessions are top-notch. Got placed in a coding competition after joining CodeElevate. Best decision ever!</p>
-                    <div class="student-info">
-                        <strong>— Diya M.</strong> <span>High school</span>
-                    </div>
-                    <div class="rating">★★★★★</div>
-                </div>
-            </div>
-        </div>
-    </section>
- 
-   <!-- Demo Booking Form -->
-<section id="demo" class="demo-section">
-    <div class="container demo-container">
-        <div class="demo-info">
-            <h2>Help your child build a strong coding foundation 🚀</h2>
+            <p class="tag">Beginner friendly</p>
+            <h3>Python Programming</h3>
             <p>
-                Book a <strong>FREE 1:1 demo class</strong> with our experienced mentors and
-                see how we make learning coding <strong>simple, engaging, and confidence‑boosting</strong>
-                for students.
+              Start with variables and loops, then bring your ideas to life with
+              useful little programs.
             </p>
-            <ul class="demo-benefits">
-                <li>✅ One‑on‑one attention with an expert mentor</li>
-                <li>✅ Structured learning aligned with school & future careers</li>
-                <li>✅ Hands‑on coding with real projects, not just theory</li>
-                <li>✅ Clear progress roadmap shared with parents</li>
-                <li>✅ Safe, supportive learning environment for kids & teens</li>
+            <p class="course-price">
+            Classes starting at <strong>$20</strong> per class
+            </p>
+            <p class="course-duration">
+             <span>⏱️</span> Up to <strong>144 hours</strong> of guided learning
+            </p>
+            <div class="course-outcome">Quiz games · useful tools</div>
+            <a class="course-link" href="#demo" data-course="Python Programming"
+              >Try a free demo <span>↗</span></a
+            >
+          </article>
+          <article class="course-card peach">
+            <div class="card-top">
+              <span class="course-icon">🌐</span>
+              ><span class="eyebrow">02 / LEARNING PATH</span>
+            </div>
+            <p class="tag">Creative builders</p>
+            <h3>Web Development</h3>
+            <p>
+              Create websites with HTML, CSS and JavaScript. Learn how beautiful
+              interfaces actually work.
+            </p>
+            <p class="course-price">
+            Classes starting at <strong>$20</strong> per class
+            </p>
+            <p class="course-duration">
+             <span>⏱️</span> Up to <strong>144 hours</strong> of guided learning
+            </p>
+            <div class="course-outcome">Personal sites · interactive pages</div>
+            <a class="course-link" href="#demo" data-course="Web Development"
+              >Try a free demo <span>↗</span></a
+            >
+          </article>
+          <article class="course-card lavender">
+            <div class="card-top">
+              <span class="course-icon">☕</span>
+              ><span class="eyebrow">03 / LEARNING PATH</span>
+            </div>
+            <p class="tag">Structured thinking</p>
+            <h3>Java Programming</h3>
+            <p>
+              Explore classes, objects and problem solving, one understandable
+              concept at a time.
+            </p>
+            <p class="course-price">
+            Classes starting at <strong>$20</strong> per class
+            </p>
+            <p class="course-duration">
+             <span>⏱️</span> Up to <strong>144 hours</strong> of guided learning
+            </p>
+            <div class="course-outcome">Mini apps · OOP projects</div>
+            <a class="course-link" href="#demo" data-course="Java Programming"
+              >Try a free demo <span>↗</span></a
+            >
+          </article>
+          <article class="course-card yellow">
+            <div class="card-top">
+              <span class="course-icon">⚙️</span>
+              ><span class="eyebrow">04 / LEARNING PATH</span>
+            </div>
+            <p class="tag">Problem solvers</p>
+            <h3>C++ Programming</h3>
+            <p>
+              Build strong programming foundations with functions, data
+              structures and algorithms.
+            </p>
+            <p class="course-price">
+            Classes starting at <strong>$20</strong> per class
+            </p>
+            <p class="course-duration">
+             <span>⏱️</span> Up to <strong>144 hours</strong> of guided learning
+            </p>
+            <div class="course-outcome">Logic challenges · algorithms</div>
+            <a class="course-link" href="#demo" data-course="C++ Programming"
+              >Try a free demo <span>↗</span></a
+            >
+          </article>
+          <article class="course-card lavender">
+            <div class="card-top">
+              <span class="course-icon">🤖</span>
+              ><span class="eyebrow">05 / LEARNING PATH</span>
+            </div>
+            <p class="tag">Python basics helpful</p>
+            <h3>Python with Machine Learning</h3>
+            <p>
+              Build on Python basics to explore data, patterns and introductory
+              machine learning.
+            </p>
+            <p class="course-price">
+            Classes starting at <strong>$20</strong> per class
+            </p>
+            <p class="course-duration">
+             <span>⏱️</span> Up to <strong>144 hours</strong> of guided learning
+            </p>
+            <div class="course-outcome">Data exploration · simple models</div>
+            <a
+              class="course-link"
+              href="#demo"
+              data-course="Python with Machine Learning"
+              >Try a free demo <span>↗</span></a
+            >
+          </article>
+          <article class="course-card mint">
+            <div class="card-top">
+              <span class="course-icon">🎯</span>
+              ><span class="eyebrow">06 / LEARNING PATH</span>
+            </div>
+            <p class="tag">Step-by-step learning</p>
+            <h3>C# Programming</h3>
+            <p>
+              Learn C# fundamentals and object-oriented programming through
+              practical exercises.
+            </p>
+            <p class="course-price">
+            Classes starting at <strong>$20</strong> per class
+            </p>
+            <p class="course-duration">
+             <span>⏱️</span> Up to <strong>144 hours</strong> of guided learning
+            </p>
+            <div class="course-outcome">Console apps · .NET foundations</div>
+            <a class="course-link" href="#demo" data-course="C# Programming"
+              >Try a free demo <span>↗</span></a
+            >
+          </article>
+        </div>
+        <p class="section-note">
+          Not sure which to choose? Pick any course for your demo—we’ll help you
+          find the right fit. Course fees and a learning plan are discussed
+          after the demo.
+        </p>
+      </section>
+      <section class="section journey">
+        <div class="wrap">
+          <p class="eyebrow">A SIMPLE START</p>
+          <h2>From curious to “I can do this.”</h2>
+          <div class="steps">
+            <article>
+              <span>01</span>
+              <h3>Meet your mentor</h3>
+              <p>
+                Request a free demo. Tell us what your learner is interested in.
+              </p>
+            </article>
+            <article>
+              <span>02</span>
+              <h3>Try something new</h3>
+              <p>
+                Explore a coding idea together and get a feel for live learning.
+              </p>
+            </article>
+            <article>
+              <span>03</span>
+              <h3>Make it their own</h3>
+              <p>
+                Choose a course and keep building skills, confidence and
+                projects.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+      <section class="section wrap" id="projects">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">LEARNING YOU CAN SEE</p>
+            <h2>Ideas off the page.<br />Projects on the screen.</h2>
+          </div>
+          <p>
+            Illustrative project ideas—not student testimonials. Every learner’s
+            pace and projects will be different.
+          </p>
+        </div>
+        <div class="project-grid">
+          <article class="project-card">
+            <div class="project-art art-quiz">
+              <span>QUESTION 01</span
+              ><strong>What will you<br />create next?</strong><b>A game →</b>
+            </div>
+            <h3>A quiz with personality</h3>
+            <p>Python · variables, conditions and creativity</p>
+          </article>
+          <article class="project-card">
+            <div class="project-art art-web">
+              <span>MY LITTLE CORNER OF THE INTERNET</span
+              ><strong
+                >Hello.<br />I’m a creator<span class="coral">.</span></strong
+              ><b>Explore my work ↗</b>
+            </div>
+            <h3>Their very own website</h3>
+            <p>HTML + CSS · design, layout and expression</p>
+          </article>
+          <article class="project-card">
+            <div class="project-art art-data">
+              <span>FIND THE PATTERN</span>
+              <div class="bars" aria-hidden="true">
+                <i></i><i></i><i></i><i></i><i></i>
+              </div>
+              <b>Small data. Big discoveries.</b>
+            </div>
+            <h3>A story told through data</h3>
+            <p>Python · patterns, charts and questions</p>
+          </article>
+        </div>
+      </section>
+      <section class="section wrap" id="mentors">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">REAL PEOPLE. REAL GUIDANCE.</p>
+            <h2>A mentor in their corner.</h2>
+          </div>
+          <a class="text-link" href="about.html">Get to know KiddoCode ↗</a>
+        </div>
+        <div class="mentor-grid">
+          <article class="mentor">
+            <div class="avatar mint" aria-hidden="true">A<span>✳</span></div>
+            <h3>Altamash</h3>
+            <p>Python & Java</p>
+          </article>
+          <article class="mentor">
+            <div class="avatar lavender" aria-hidden="true">
+              A<span>✳</span>
+            </div>
+            <h3>Asif</h3>
+            <p>C++ & AI / ML</p>
+          </article>
+          <article class="mentor">
+            <div class="avatar peach" aria-hidden="true">S<span>✳</span></div>
+            <h3>Siddhi Sharma</h3>
+            <p>Science education</p>
+          </article>
+          <article class="mentor">
+            <div class="avatar yellow" aria-hidden="true">A<span>✳</span></div>
+            <h3>Aashish Rajput</h3>
+            <p>Mathematics education</p>
+          </article>
+        </div>
+        <p class="section-note">
+          Your demo helps us match the learner with a suitable mentor. Ask us
+          about current mentor availability.
+        </p>
+      </section>
+      <section class="section faq wrap">
+        <div>
+          <p class="eyebrow">PARENT TO PARENT</p>
+          <h2>A few things<br />you might wonder.</h2>
+          <p>
+            Still have a question?<br /><a
+              class="text-link"
+              href="https://wa.me/918077481604"
+              >Let’s chat on WhatsApp ↗</a
+            >
+          </p>
+        </div>
+        <div>
+          <details>
+            <summary>
+              Does my child need coding experience?<span aria-hidden="true"
+                >+</span
+              >
+            </summary>
+            <p>
+              No. We can start with the basics. The demo helps us understand
+              their comfort with computers and choose a suitable course.
+            </p>
+          </details>
+          <details>
+            <summary>
+              What do we need for the demo?<span aria-hidden="true">+</span>
+            </summary>
+            <p>
+              A laptop or desktop, an internet connection and a little
+              curiosity. We will share the meeting details once the time is
+              confirmed.
+            </p>
+          </details>
+          <details>
+            <summary>
+              Is the demo really free?<span aria-hidden="true">+</span>
+            </summary>
+            <p>
+              Yes. There is no payment or course purchase required to request
+              the demo.
+            </p>
+          </details>
+          <details>
+            <summary>
+              Do I need to create an account?<span aria-hidden="true">+</span>
+            </summary>
+            <p>
+              No. Book directly using the form below. An optional adult or
+              parent account lets you view requests made with the same verified
+              email.
+            </p>
+          </details>
+          <details>
+            <summary>
+              Are classes and prices fixed?<span aria-hidden="true">+</span>
+            </summary>
+            <p>
+              We discuss the learning plan, mentor availability, schedule and
+              fees with you before you decide to enrol.
+            </p>
+          </details>
+          <details>
+            <summary>
+              Is my selected time guaranteed?<span aria-hidden="true">+</span>
+            </summary>
+            <p>
+              It is a preferred time, not a reserved appointment. Our team will
+              contact you to confirm availability, including any timezone or
+              daylight-saving questions.
+            </p>
+          </details>
+        </div>
+      </section>
+      <section class="booking-section" id="demo">
+        <div class="wrap booking-grid">
+          <div class="booking-copy">
+            <p class="eyebrow">THEIR NEXT BIG THING STARTS HERE</p>
+            <h2>
+              One small step.<br />A world of<br /><span>possibility.</span>
+            </h2>
+            <p>
+              Let’s discover what they can create.<br />Request a free, live
+              coding demo.
+            </p>
+            <ul>
+              <li>A friendly introduction to coding</li>
+              <li>Time to ask your questions</li>
+              <li>A starting point built around the learner</li>
             </ul>
-        </div>
-        <div class="demo-form-wrapper">
-            <form id="demoBookingForm">
-                <h3>Book Free Demo</h3>
-                
-                <div class="form-group">
-                    <input type="text" id="name" name="name" placeholder="Full name" autocomplete="name" required>
-                    <small class="error-msg" id="nameError"></small>
-                </div>
-                
-                <div class="form-group">
-                    <input type="email" id="email" name="email" placeholder="Email address" autocomplete="email" required>
-                    <small class="error-msg" id="emailError"></small>
-                </div>
-                
-                <div class="form-group">
-                    <input type="tel" id="phone" name="phone" placeholder="Phone number" autocomplete="tel" required>
-                    <small class="error-msg" id="phoneError"></small>
-                </div>
-                
-                <div class="form-group">
-                    <select id="courseSelect" name="course" required>
-                        <option value="">-- Select course --</option>
-                        <option value="Python Programming">🐍 Python Programming</option>
-                        <option value="Java Programming">☕ Java Programming</option>
-                        <option value="C++ Programming">⚙️ C++ Development</option>
-                        <option value="Web Development">🌐 Web Development</option>
-                    </select>
-                    <small class="error-msg" id="courseError"></small>
-                </div>
-                
-                <div class="form-group">
-                    <select id="timeZone" name="timezone" required>
-                        <option value="">Select Time Zone</option>
-                        <option value="Asia/Kolkata">India (IST)</option>
-                        <option value="America/New_York">USA (EST)</option>
-                        <option value="America/Chicago">USA (CST)</option>
-                        <option value="America/Denver">USA (MST)</option>
-                        <option value="America/Los_Angeles">USA (PST)</option>
-                        <option value="Europe/London">UK (GMT)</option>
-                        <option value="Australia/Sydney">Australia (AEST)</option>
-                        <option value="Asia/Dubai">UAE (GST)</option>
-                        <option value="Asia/Singapore">Singapore (SGT)</option>
-                    </select>
-                    <small class="error-msg" id="timeZoneError"></small>
-                </div>
-                
-<div class="form-group half">
-    <label for="demoDate">Date</label>
-    <input type="date" id="demoDate" name="date" required>
-    <small class="error-msg" id="dateError"></small>
-</div>
-
-<div class="form-group half">
-    <label for="demoTime">Time</label>
-    <input type="time" id="demoTime" name="time" required>
-    <small class="error-msg" id="timeError"></small>
-</div>
-                
-                <button type="submit" class="btn-primary full-width">Schedule Free Demo</button>
-                
-                <div id="formSuccessMessage" class="success-message hidden">
-                    🎉 Awesome! Your free demo is confirmed. Our mentor will reach out shortly.
-                </div>
+            <p class="booking-footnote">
+              No payment. No login. Just curiosity.
+            </p>
+          </div>
+          <div class="booking-panel">
+            <noscript
+              ><p>
+                Please enable JavaScript to book online, or email
+                altamashraeen3@gmail.com.
+              </p></noscript
+            >
+            <form id="demoBookingForm" method="post" action="/api/bookings">
+              <p class="eyebrow">LET’S MEET YOUR FUTURE CREATOR</p>
+              <h3>Book your free demo</h3>
+              <p class="muted">
+                An adult or parent/guardian should complete this form.
+              </p>
+              <div class="form-grid">
+                <label
+                  >Parent / adult name<input
+                    name="name"
+                    type="text"
+                    autocomplete="name"
+                    maxlength="100"
+                    minlength="2"
+                    required /></label
+                ><label
+                  >Email address<input
+                    name="email"
+                    type="email"
+                    autocomplete="email"
+                    maxlength="254"
+                    required /></label
+                ><label
+                  >Phone with country code<input
+                    name="phone"
+                    type="tel"
+                    autocomplete="tel"
+                    placeholder="+91 9876543210"
+                    maxlength="25"
+                    required /></label
+                ><label
+                  >Learner’s age group<select name="age" required>
+                    <option value="">Select age group</option>
+                    <option>Under 10</option>
+                    <option>10–13</option>
+                    <option>14–17</option>
+                    <option>18+</option>
+                  </select></label
+                ><label class="full"
+                  >I’m interested in<select name="course" required>
+                    <option value="">Choose a course</option>
+                    <option>Python Programming</option>
+                    <option>Web Development</option>
+                    <option>Java Programming</option>
+                    <option>C++ Programming</option>
+                    <option>Python with Machine Learning</option>
+                    <option>C# Programming</option>
+                  </select></label
+                ><label
+                  >Preferred date<input
+                    name="date"
+                    type="date"
+                    required /></label
+                ><label
+                  >Preferred time<input
+                    name="time"
+                    type="time"
+                    required /></label
+                ><label class="full"
+                  >Timezone<select name="timezone" required>
+                    <option value="Asia/Kolkata">India — Asia/Kolkata</option>
+                    <option value="America/New_York">
+                      US Eastern — America/New_York
+                    </option>
+                    <option value="America/Chicago">
+                      US Central — America/Chicago
+                    </option>
+                    <option value="America/Los_Angeles">
+                      US Pacific — America/Los_Angeles
+                    </option>
+                    <option value="Europe/London">UK — Europe/London</option>
+                    <option value="Asia/Dubai">UAE — Asia/Dubai</option>
+                    <option value="Asia/Singapore">
+                      Singapore — Asia/Singapore
+                    </option>
+                    <option value="Australia/Sydney">
+                      Australia — Australia/Sydney
+                    </option>
+                  </select></label
+                >
+              </div>
+              <div class="honeypot" aria-hidden="true">
+                <label
+                  >Leave empty<input
+                    name="website"
+                    tabindex="-1"
+                    autocomplete="off"
+                /></label>
+              </div>
+              <label class="check"
+                ><input type="checkbox" name="consent" required /><span
+                  >I am 18+ and, if booking for a child, their parent/guardian.
+                  I agree to be contacted about this demo and have read the
+                  <a href="privacy.html">privacy policy</a>.</span
+                ></label
+              ><button class="button full-width" type="submit">
+                Let’s start creating <span>↗</span>
+              </button>
+              <p class="form-message" role="status" aria-live="polite"></p>
+              <p class="tiny">
+                Your preferred time is subject to mentor confirmation.
+              </p>
             </form>
+            <div id="booking-success" hidden tabindex="-1">
+              <span class="success-mark">✓</span>
+              <h3>You’re on the list!</h3>
+              <p>
+                Your request has been saved. We’ll contact you to confirm the
+                demo time.
+              </p>
+              <p id="booking-reference" class="tiny"></p>
+              <a
+                id="booking-whatsapp"
+                class="button"
+                href="https://wa.me/918077481604"
+                target="_blank"
+                rel="noopener"
+                >Message KiddoCode ↗</a
+              >
+              <p class="tiny">
+                This opens WhatsApp; it does not send a message automatically.
+              </p>
+              <a href="signup.html" class="text-link"
+                >Create an optional parent account →</a
+              >
+            </div>
+          </div>
         </div>
-    </div>
-</section>
- 
-    <!-- Footer -->
-<footer>
-    <div class="container footer-content">
-        <div class="footer-brand">
-            <div class="logo">KiddoCode<span>.</span></div>
-            <p>Empowering next-gen coders with project-based learning & 1:1 mentorship.</p>
+      </section>
+    </main>
+    <footer>
+      <div class="wrap footer-grid">
+        <div>
+          <a class="brand" href="index.html">kiddo<span>code</span>.</a>
+          <p>Small steps. Big ideas.<br />A whole world to create.</p>
         </div>
-
-        <div class="footer-links">
-            <h4>Get In Touch</h4>
-            <a href="mailto:altamashraeen3@gmail.com">
-                📧 altamashraeen3@gmail.com
-            </a>
-            <a href="https://wa.me/+918077481604" target="_blank">
-                💬 WhatsApp: +91 8077481604
-            </a>
+        <div>
+          <h3>Explore</h3>
+          <a href="index.html#courses">Our courses</a
+          ><a href="index.html#mentors">Meet the mentors</a
+          ><a href="index.html#projects">Project ideas</a
+          ><a href="about.html">About us</a>
         </div>
-
-        <div class="footer-links">
-            <h4>Explore</h4>
-            <a href="#courses">Courses</a>
-            <a href="#mentors">Mentors</a>
-            <a href="#testimonialsid">Success stories</a>
+        <div>
+          <h3>Let’s talk</h3>
+          <a href="mailto:altamashraeen3@gmail.com">Email KiddoCode ↗</a
+          ><a href="https://wa.me/918077481604" target="_blank" rel="noopener"
+            >WhatsApp ↗</a
+          ><a href="signup.html">Create an account</a
+          ><a href="privacy.html">Privacy policy</a>
         </div>
-
-        <div class="footer-links">
-            <a href="privacy.html" target="_blank" rel="noopener noreferrer">
-                Privacy policy
-            </a>
-        </div>
-    </div>
-</footer>
-
-<!-- ✅ ADD THIS LINE HERE -->
-<script src="script.js"></script>
-
-</body>
+      </div>
+      <div class="wrap footer-bottom">
+        © 2026 KiddoCode <span>Made for curious minds.</span>
+      </div>
+    </footer>
+  </body>
 </html>
