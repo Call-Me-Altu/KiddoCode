@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta
+      name="description"
+      content="Live, mentor-led coding classes with KiddoCode. Explore Python, web development and more. Request a free demo with no login required."
+    />
+    <meta name="theme-color" content="#faf9f5" />
+    <title>Let’s make room for big ideas. | KiddoCode</title>
+    <link rel="icon" href="image.png" type="image/png" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+    <script src="account.js" defer></script>
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+    <header>
+      <nav class="wrap nav" aria-label="Main navigation">
+        <a class="brand" href="index.html">
+          <img src="image.png" alt="KiddoCode Logo" class="brand-logo" />
+        </a>
+          <button
+          class="menu-button"
+          aria-expanded="false"
+          aria-controls="nav-links"
+          hidden
+        >
+          Menu ☰
+        </button>
+        <div id="nav-links">
+          <a href="index.html#courses">Courses</a
+          ><a href="about.html">Our story</a
+          ><a href="index.html#mentors">Mentors</a
+          ><a href="login.html">Log in</a><a href="signup.html">Sign up</a
+          ><a class="button small" href="index.html#demo"
+            >Book a free demo <span>↗</span></a
+          >
+        </div>
+      </nav>
+    </header>
+    <main id="main">
+      <section class="wrap auth-layout">
+        <div>
+          <p class="eyebrow">YOUR KIDDOCODE CORNER</p>
+          <h1>Let’s make room for big ideas.</h1>
+          <p class="lead">Create an optional adult or parent account.</p>
+          <div class="auth-decoration" aria-hidden="true">
+            &lt;you can do this /&gt;
+          </div>
+          <a href="index.html#demo" class="text-link"
+            >Just booking a demo? No account needed →</a
+          >
+        </div>
+        <div class="booking-panel">
+          <noscript
+            ><p>
+              Please enable JavaScript to use accounts. For help, email
+              altamashraeen3@gmail.com.
+            </p></noscript
+          >
+          <form id="auth-form" data-mode="signup" method="post">
+            <h2>Create account</h2>
+            <label
+              >Email address<input
+                name="email"
+                type="email"
+                autocomplete="email"
+                required /></label
+            ><label
+              >Password<input
+                name="password"
+                type="password"
+                minlength="12"
+                maxlength="128"
+                autocomplete="new-password"
+                required
+            /></label>
+            <p class="tiny">
+              Use at least 12 characters. A memorable passphrase works well.
+            </p>
+            <label class="check"
+              ><input name="adult" type="checkbox" required /><span
+                >I am 18+ and have read the
+                <a href="privacy.html">privacy policy</a>.</span
+              ></label
+            ><button class="button full-width" type="submit">
+              Create account ↗
+            </button>
+            <p class="form-message" role="status"></p>
+          </form>
+          <div class="auth-links">
+            <a href="login.html">Back to log in →</a>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer>
+      <div class="wrap footer-grid">
+        <div>
+          <a class="brand" href="index.html">kiddo<span>code</span>.</a>
+          <p>Small steps. Big ideas.<br />A whole world to create.</p>
+        </div>
+        <div>
+          <h3>Explore</h3>
+          <a href="index.html#courses">Our courses</a
+          ><a href="index.html#mentors">Meet the mentors</a
+          ><a href="index.html#projects">Project ideas</a
+          ><a href="about.html">About us</a>
+        </div>
+        <div>
+          <h3>Let’s talk</h3>
+          <a href="mailto:altamashraeen3@gmail.com">Email KiddoCode ↗</a
+          ><a href="https://wa.me/918077481604" target="_blank" rel="noopener"
+            >WhatsApp ↗</a
+          ><a href="signup.html">Create an account</a
+          ><a href="privacy.html">Privacy policy</a>
+        </div>
+      </div>
+      <div class="wrap footer-bottom">
+        © 2026 KiddoCode <span>Made for curious minds.</span>
+      </div>
+    </footer>
+  </body>
+</html>

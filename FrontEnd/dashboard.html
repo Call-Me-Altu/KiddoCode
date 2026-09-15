@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta
+      name="description"
+      content="Live, mentor-led coding classes with KiddoCode. Explore Python, web development and more. Request a free demo with no login required."
+    />
+    <meta name="theme-color" content="#faf9f5" />
+    <title>Your dashboard | KiddoCode</title>
+    <link rel="icon" href="image.png" type="image/png" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+    <script src="account.js" defer></script>
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+    <header>
+      <nav class="wrap nav" aria-label="Main navigation">
+        <a class="brand" href="index.html">
+          <img src="image.png" alt="KiddoCode Logo" class="brand-logo" />
+        </a>
+        <button
+          class="menu-button"
+          aria-expanded="false"
+          aria-controls="nav-links"
+          hidden
+        >
+          Menu ☰
+        </button>
+        <div id="nav-links">
+          <a href="index.html#courses">Courses</a
+          ><a href="about.html">Our story</a
+          ><a href="index.html#mentors">Mentors</a
+          ><a href="login.html">Log in</a><a href="signup.html">Sign up</a
+          ><a class="button small" href="index.html#demo"
+            >Book a free demo <span>↗</span></a
+          >
+        </div>
+      </nav>
+    </header>
+    <main id="main">
+      <section class="wrap section">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">YOUR KIDDOCODE CORNER</p>
+            <h1 class="dashboard-title">Demo requests</h1>
+            <p id="account-email"></p>
+          </div>
+          <button class="button secondary" id="logout">Log out</button>
+        </div>
+        <p>
+          Requests associated with your verified email appear here. A preferred
+          time is not confirmed until our team contacts you.
+        </p>
+        <div class="dashboard-controls">
+          <label
+            >Search this page<input
+              type="search"
+              id="lead-search"
+              placeholder="Name, course or email" /></label
+          ><label
+            >Filter this page<select id="status-filter">
+              <option value="">All statuses</option>
+              <option>New</option>
+              <option>Contacted</option>
+              <option>Demo Booked</option>
+              <option>Converted</option>
+              <option>Not Interested</option>
+            </select></label
+          ><button class="button secondary" id="reload">Refresh</button
+          ><a class="button" href="index.html#demo">New demo request ↗</a>
+        </div>
+        <p class="form-message" id="dashboard-message" role="status"></p>
+        <div id="lead-list" class="lead-list"></div>
+        <div class="actions">
+          <button class="button secondary" id="previous" disabled>
+            ← Previous</button
+          ><span id="page-number">Page 1</span
+          ><button class="button secondary" id="next" disabled>Next →</button>
+        </div>
+      </section>
+    </main>
+    <footer>
+      <div class="wrap footer-grid">
+        <div>
+          <a class="brand" href="index.html">kiddo<span>code</span>.</a>
+          <p>Small steps. Big ideas.<br />A whole world to create.</p>
+        </div>
+        <div>
+          <h3>Explore</h3>
+          <a href="index.html#courses">Our courses</a
+          ><a href="index.html#mentors">Meet the mentors</a
+          ><a href="index.html#projects">Project ideas</a
+          ><a href="about.html">About us</a>
+        </div>
+        <div>
+          <h3>Let’s talk</h3>
+          <a href="mailto:altamashraeen3@gmail.com">Email KiddoCode ↗</a
+          ><a href="https://wa.me/918077481604" target="_blank" rel="noopener"
+            >WhatsApp ↗</a
+          ><a href="signup.html">Create an account</a
+          ><a href="privacy.html">Privacy policy</a>
+        </div>
+      </div>
+      <div class="wrap footer-bottom">
+        © 2026 KiddoCode <span>Made for curious minds.</span>
+      </div>
+    </footer>
+  </body>
+</html>
