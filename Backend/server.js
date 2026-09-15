@@ -189,8 +189,29 @@ function createApp({ db = database, authenticate = verifyUser } = {}) {
   );
   return app;
 }
-if (require.main === module)
-  createApp().listen(process.env.PORT || 3001, () =>
-    console.log("KiddoCode listening"),
-  );
+if (require.main === module) {
+  const { tick } = require("./worker");
+
+  createApp().listen(process.env.PORT || 3001, () => {
+    console.log("KiddoCode server is running");
+
+    async function processNotifications() {
+      try {
+        await tick();
+      } catch (error) {
+        console.error(
+          "notification_queue_unavailable",
+          error.code || error.message
+        );
+      } finally {
+        // Wait until this batch finishes before starting another.
+        setTimeout(processNotifications, 5000);
+      }
+    }
+
+    console.log("KiddoCode email processor started");
+    processNotifications();
+  });
+}
+
 module.exports = { createApp };
