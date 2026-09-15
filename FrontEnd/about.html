@@ -1,583 +1,118 @@
-<!DOCTYPE html>
-
+<!doctype html>
 <html lang="en">
-
-<head>
-
-    <meta charset="UTF-8">
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>About Us | KiddoCode</title>
-
-     <link rel="icon" href="image.png" type="image/x-icon">
-
-
-
-    <link rel="stylesheet" href="style.css">
-
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,70… rel="stylesheet">
-
-
-
-    <style>
-
-        /* RESET */
-
-        * {
-
-            box-sizing: border-box;
-
-            margin: 0;
-
-            padding: 0;
-
-        }
-
-
-
-        body {
-
-            font-family: Arial, Helvetica, sans-serif;
-
-            background-color: #f9fafb;
-
-            color: #1f2933;
-
-            line-height: 1.7;
-
-        }
-
-
-
-        .container {
-
-            max-width: 1200px;
-
-            margin: auto;
-
-            padding: 20px;
-
-        }
-
-
-
-        /* ===== NAVBAR ===== */
-
-        .navbar {
-
-            background: #ffffff;
-
-            border-bottom: 1px solid #e5e7eb;
-
-        }
-
-
-
-        .nav-container {
-
-            display: flex;
-
-            align-items: center;
-
-            justify-content: space-between;
-
-        }
-
-
-
-        /* ✅ LOGO FIX */
-
-        .logo {
-
-            display: flex;
-
-            align-items: center;
-
-        }
-
-
-
-        .logo img {
-
-            height: 70px;
-
-            width: auto;
-
-            max-width: 160px;
-
-            object-fit: contain;
-
-        }
-
-
-
-        .nav-links {
-
-            display: flex;
-
-            list-style: none;
-
-            gap: 24px;
-
-        }
-
-
-
-        .nav-links a {
-
-            text-decoration: none;
-
-            color: #1f2933;
-
-            font-weight: 500;
-
-        }
-
-
-
-.btn-demo-nav {
-
-    background: #3b82f6;
-
-    color: white !important;
-
-    padding: 0.5rem 1.2rem;
-
-    border-radius: 2rem;
-
-    transition: background 0.2s;
-
-}
-
-
-
-        /* ===== HERO ===== */
-
-        .about-hero {
-
-            background: linear-gradient(135deg, #5b4bff, #3b82f6);
-
-            color: white;
-
-            text-align: center;
-
-            padding: 80px 20px;
-
-        }
-
-
-
-        .about-hero h1 {
-
-            font-size: 36px;
-
-            margin-bottom: 10px;
-
-        }
-
-
-
-        .about-hero p {
-
-            max-width: 700px;
-
-            margin: auto;
-
-            font-size: 18px;
-
-            color: #e5e7eb;
-
-        }
-
-
-
-        /* ===== CONTENT ===== */
-
-        h2 {
-
-            margin-top: 40px;
-
-            font-size: 28px;
-
-            color: #0f172a;
-
-        }
-
-
-
-        p {
-
-            margin-top: 10px;
-
-            color: #374151;
-
-        }
-
-
-
-        .cards {
-
-            display: grid;
-
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-
-            gap: 30px;
-
-            margin-top: 40px;
-
-        }
-
-
-
-        .card {
-
-            background: white;
-
-            padding: 30px;
-
-            border-radius: 12px;
-
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-
-        }
-
-
-
-        .card h3 {
-
-            color: #5b4bff;
-
-            margin-bottom: 10px;
-
-        }
-
-
-
-        .values {
-
-            display: grid;
-
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-
-            gap: 20px;
-
-            margin-top: 30px;
-
-        }
-
-
-
-        .value-item {
-
-            background: #eef2ff;
-
-            padding: 20px;
-
-            border-radius: 10px;
-
-        }
-
-
-
-        /* ===== FOOTER ===== */
-
-        footer {
-
-            background-color: #0f172a;
-
-            color: white;
-
-            padding: 50px 0;
-
-            margin-top: 80px;
-
-        }
-
-
-
-        .footer-content {
-
-            display: flex;
-
-            flex-wrap: wrap;
-
-            justify-content: space-between;
-
-            gap: 30px;
-
-        }
-
-
-
-        .footer-links a {
-
-            display: block;
-
-            color: #cbd5e1;
-
-            text-decoration: none;
-
-            margin-bottom: 8px;
-
-            font-size: 14px;
-
-        }
-
-
-
-        .footer-links a:hover {
-
-            color: white;
-
-        }
-
-
-
-        .footer-logo {
-
-            font-size: 22px;
-
-            font-weight: bold;
-
-        }
-
-
-
-        .footer-logo span {
-
-            color:#ffffff;
-
-        }
-
-
-
-        /* ===== RESPONSIVE ===== */
-
-        @media (max-width: 768px) {
-
-            .nav-links {
-
-                display: none;
-
-            }
-
-
-
-            .logo img {
-
-                height: 34px;
-
-                max-width: 120px;
-
-            }
-
-
-
-            .footer-content {
-
-                flex-direction: column;
-
-            }
-
-        }
-
-    </style>
-
-</head>
-
-
-
-<body>
-
-
-
-<!-- ✅ NAVBAR -->
-
-<nav class="navbar">
-
-    <div class="container nav-container">
-
-        <div class="logo">
-
-            <a href="index.html#home">
-
-            <img src="logo.jpeg" alt="KiddoCode Logo">
-
-            </a>
-
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta
+      name="description"
+      content="Live, mentor-led coding classes with KiddoCode. Explore Python, web development and more. Request a free demo with no login required."
+    />
+    <meta name="theme-color" content="#faf9f5" />
+    <title>Our story | KiddoCode</title>
+    <link rel="icon" href="image.png" type="image/png" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+    <header>
+      <nav class="wrap nav" aria-label="Main navigation">
+        <a class="brand" href="index.html">
+          <img src="image.png" alt="KiddoCode Logo" class="brand-logo" />
+        </a>
+          <button class="menu-button" aria-expanded="false" aria-controls="nav-links" hidden>  Menu ☰ </button>
+        <div id="nav-links">
+          <a href="index.html#courses">Courses</a
+          ><a href="about.html">Our story</a
+          ><a href="index.html#mentors">Mentors</a
+          ><a href="login.html">Log in</a><a href="signup.html">Sign up</a
+          ><a class="button small" href="index.html#demo"
+            >Book a free demo <span>↗</span></a
+          >
         </div>
-
-
-
-        <ul class="nav-links">
-
-            <li><a href="index.html">Home</a></li>
-
-            <li><a href="index.html#courses">Courses</a></li>
-
-            <li><a href="index.html#mentors">Mentors</a></li>
-
-            <li><a href="index.html#demo" class="btn-demo-nav">Book Free Demo</a></li>
-
-        </ul>
-
-    </div>
-
-</nav>
-
-
-
-<!-- ✅ HERO -->
-
-<section class="about-hero">
-
-    <h1>About KiddoCode</h1>
-
-    <p>
-
-        KiddoCode is a future‑focused learning platform empowering children
-
-        to become confident creators through coding and innovation.
-
-    </p>
-
-</section>
-
-
-
-<!-- ✅ ABOUT CONTENT -->
-
-<section class="container">
-
-    <h2>Who We Are</h2>
-
-    <p>
-
-        KiddoCode introduces children to computer science using hands‑on,
-
-        project‑based learning with expert mentorship.
-
-    </p>
-
-
-
-    <div class="cards">
-
-        <div class="card">
-
-            <h3>🎯 Our Mission</h3>
-
-            <p>Make high‑quality coding education accessible to every child.</p>
-
+      </nav>
+    </header>
+    <main id="main">
+      <section class="wrap section prose">
+        <p class="eyebrow">HELLO, WE’RE KIDDOCODE</p>
+        <h1>
+          Curiosity deserves<br />a place to <span class="coral">grow.</span>
+        </h1>
+        <p class="lead">
+          We help students move from using technology to understanding it—and
+          creating something of their own.
+        </p>
+        <h2>Learning starts with a question.</h2>
+        <p>
+          “How does that work?” is a powerful starting point. KiddoCode pairs
+          live mentorship with practical coding activities, so students can
+          explore the answer one small step at a time.
+        </p>
+        <p>
+          Our approach is simple: explain a concept, try it together, make a
+          mistake, understand it, and try again. The goal is not just working
+          code. It is the confidence to solve the next problem.
+        </p>
+        <div class="steps">
+          <article>
+            <span>01</span>
+            <h3>Understand first</h3>
+            <p>
+              Clear explanations, questions welcome, and room to learn at a
+              comfortable pace.
+            </p>
+          </article>
+          <article>
+            <span>02</span>
+            <h3>Build something</h3>
+            <p>
+              Apply concepts in small, meaningful projects instead of only
+              memorising syntax.
+            </p>
+          </article>
+          <article>
+            <span>03</span>
+            <h3>Keep parents involved</h3>
+            <p>
+              Discuss a suitable starting point, course plan and expectations
+              before enrolling.
+            </p>
+          </article>
         </div>
-
-
-
-        <div class="card">
-
-            <h3>🚀 Our Vision</h3>
-
-            <p>Create a generation of confident digital innovators.</p>
-
-        </div>
-
-    </div>
-
-
-
-    <h2>Our Core Values</h2>
-
-    <div class="values">
-
-        <div class="value-item">
-
-            <strong>Student‑First Learning</strong>
-
-            <p>Programs designed around how children learn best.</p>
-
-        </div>
-
-        <div class="value-item">
-
-            <strong>Creativity & Innovation</strong>
-
-            <p>Encouraging imagination and experimentation.</p>
-
-        </div>
-
-        <div class="value-item">
-
-            <strong>Mentorship & Support</strong>
-
-            <p>Personal guidance at every step.</p>
-
-        </div>
-
-        <div class="value-item">
-
-            <strong>Future Readiness</strong>
-
-            <p>Skills that matter in tomorrow’s world.</p>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-
-<!-- ✅ FOOTER -->
-
-<footer>
-
-    <div class="container footer-content">
-
-
-
+        <h2>Find the right first step.</h2>
+        <p>
+          Explore Python, Java, C++, C#, web development or Python with machine
+          learning. Not every course suits every age or experience level; the
+          demo is a chance to work that out together.
+        </p>
+        <a class="button" href="index.html#demo">Meet us in a free demo ↗</a>
+      </section>
+    </main>
+    <footer>
+      <div class="wrap footer-grid">
         <div>
-
-            <div class="footer-logo" style="color: white;">KiddoCode<span></span></div>
-
-            <p style="color: white;">Empowering next‑gen coders with mentorship.</p>
-
+          <a class="brand" href="index.html">kiddo<span>code</span>.</a>
+          <p>Small steps. Big ideas.<br />A whole world to create.</p>
         </div>
-
-
-
-        <div class="footer-links">
-
-            <h4>Get in Touch</h4>
-
-            <a href="mailto:altamashraeen3@gmail.com">altamashraeen3@gmail.com</a>
-
-            <a href="https://wa.me/918077481604" target="_blank">
-
-                WhatsApp: +91 8077481604
-
-            </a>
-
+        <div>
+          <h3>Explore</h3>
+          <a href="index.html#courses">Our courses</a
+          ><a href="index.html#mentors">Meet the mentors</a
+          ><a href="index.html#projects">Project ideas</a
+          ><a href="about.html">About us</a>
         </div>
-
-
-
-        <div class="footer-links">
-
-            <h4>Legal</h4>
-
-            <a href="privacy.html">Privacy Policy</a>
-
+        <div>
+          <h3>Let’s talk</h3>
+          <a href="mailto:altamashraeen3@gmail.com">Email KiddoCode ↗</a
+          ><a href="https://wa.me/918077481604" target="_blank" rel="noopener"
+            >WhatsApp ↗</a
+          ><a href="signup.html">Create an account</a
+          ><a href="privacy.html">Privacy policy</a>
         </div>
-
-
-
-    </div>
-
-</footer>
-
-
-
-</body>
-
+      </div>
+      <div class="wrap footer-bottom">
+        © 2026 KiddoCode <span>Made for curious minds.</span>
+      </div>
+    </footer>
+  </body>
 </html>
